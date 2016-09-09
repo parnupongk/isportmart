@@ -1,0 +1,6 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+
+    "editor.fontSize": 17
+}

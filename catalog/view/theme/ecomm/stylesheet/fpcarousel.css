@@ -1,0 +1,8 @@
+.fp_carousel{}
+.fp_carousel .box-header{background:rgba(0,0,0,0.3);padding:5px;color:#fff;}
+.fp_carousel .fp_carousel-title{color:#fff;padding:5px;margin:0;}
+.fp_carousel .fp_carousel-left,
+.fp_carousel .fp_carousel-right{background:#fff;color:#000;}
+.fp_carousel .item{width:100%;padding:10px 10px 0px 10px;}
+.fp_carousel .product-thumb{margin:0;}
+.fp_carousel .owl-wrapper-outer {border:0;border-radius:0;box-shadow:none;}

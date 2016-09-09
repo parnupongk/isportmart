@@ -1,0 +1,35 @@
+<?php
+// Text
+$_['text_new_subject']          = '%s - คำสั่งซื้อ %s';
+$_['text_new_greeting']         = 'ขอบคุณที่สนใจใน %s สินค้า. ทางบริษัทได้รับคำสั่งซื้อแล้ว และจะรีบดำเนินการจัดส่งสินค้า หลังจากได้รับการชำระเงินจากท่านในทันทีค่ะ.';
+$_['text_new_received']         = 'คำสั่งซื้อใหม่.';
+$_['text_new_link']             = 'ดูรายละเอียดคำสั่งซื้อ :';
+$_['text_new_order_detail']     = 'รายละเอียดคำสั่งซื้อ';
+$_['text_new_instruction']      = 'คำแนะนำ';
+$_['text_new_order_id']         = 'หมายเลขคำสั่งซื้อ:';
+$_['text_new_date_added']       = 'วันที่:';
+$_['text_new_order_status']     = 'สถานะคำสั่งซื้อ:';
+$_['text_new_payment_method']   = 'การชำระเงิน:';
+$_['text_new_shipping_method']  = 'การจัดส่ง:';
+$_['text_new_email']  			= 'อีเมล์:';
+$_['text_new_telephone']  		= 'เบอร์โทรศัพท์:';
+$_['text_new_ip']  				= 'IP:';
+$_['text_new_payment_address']  = 'ข้อมูลลูกค้า';
+$_['text_new_shipping_address'] = 'ที่อยู่จัดส่ง';
+$_['text_new_products']         = 'สินค้า';
+$_['text_new_product']          = 'สินค้า';
+$_['text_new_model']            = 'รหัสสินค้า';
+$_['text_new_quantity']         = 'จำนวน';
+$_['text_new_price']            = 'ราคา';
+$_['text_new_order_total']      = 'ยอดรวมทั้งหมด';
+$_['text_new_total']            = 'ยอดเงิน';
+$_['text_new_download']         = 'Once your payment has been confirmed you can click on the link below to access your downloadable products:';
+$_['text_new_comment']          = 'หมายเหตุในคำสั่งซื้อ:';
+$_['text_new_footer']           = ' หากคุณมีข้อสงสัยหรือคำถามเพิ่มเติม โทร 025026505';
+$_['text_update_subject']       = '%s - สถานะคำสั่งซื้อ %s';
+$_['text_update_order']         = 'หมายเลขคำสั่งซื้อ:';
+$_['text_update_date_added']    = 'วันสั่งซื้อ:';
+$_['text_update_order_status']  = 'สถานะคำสั่งล่าสุด:';
+$_['text_update_comment']       = 'หมายเหตุในคำสั่งซื้อ:';
+$_['text_update_link']          = 'ดูรายละเอียดคำสั่งซื้อ :';
+$_['text_update_footer']        = ' หากคุณมีข้อสงสัยหรือคำถามเพิ่มเติม โทร 025026505';

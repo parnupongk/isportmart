@@ -1,0 +1,1 @@
+2015-12-01 17:14:26 - a:9:{s:9:"TIMESTAMP";s:20:"2015-12-01T10:14:25Z";s:13:"CORRELATIONID";s:13:"345e6d05cf5ad";s:3:"ACK";s:7:"Failure";s:7:"VERSION";s:4:"65.2";s:5:"BUILD";s:8:"18308778";s:12:"L_ERRORCODE0";s:5:"10002";s:15:"L_SHORTMESSAGE0";s:14:"Security error";s:14:"L_LONGMESSAGE0";s:28:"Security header is not valid";s:15:"L_SEVERITYCODE0";s:5:"Error";}

@@ -1,0 +1,15 @@
+224 payment_address.php
+
+$address_id = $this->model_account_address->getAddressbyTel($this->session->data['cust_ani']);
+					
+if ($address_id != '') {
+	$this->model_account_address->editAddress($address_id, $this->request->post);
+	
+	$this->model_account_customer->editCustomerFLETF($this->request->post);
+
+} else {
+	$address_id = $this->model_account_address->addAddress($this->request->post);
+	
+	$this->model_account_customer->editCustomerETF($this->request->post);
+
+}
