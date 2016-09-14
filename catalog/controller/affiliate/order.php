@@ -86,6 +86,7 @@ public function index() {
 				$showHistory='';
 				$showDownload ='';
 				$addressPrint = '';
+				$updateBarcodeStock='';
 			/*if($order_status_id != 3 and $order_status_id != 27){*/	
 			}else if ($result['order_status_id'] == 2) {
 				$approve = $this->url->link('affiliate/order/approved', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');
@@ -95,6 +96,7 @@ public function index() {
 				$showHistory='';
 				$showDownload ='';
 				$addressPrint='';
+				$updateBarcodeStock='';
 			/*if($order_status_id != 3 and $order_status_id != 27){*/	
 			}else if($result['order_status_id'] == 3 || $result['order_status_id'] == 27) {
 				$updateStatusID =$this->url->link('affiliate/order/approved', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');
@@ -104,6 +106,7 @@ public function index() {
 				$shipping = $this->url->link('affiliate/order/shipping', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' .$result['order_id'],'', 'SSL');			
 				$invoice = $this->url->link('affiliate/order/invoice', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' .$result['order_id'],'', 'SSL');
 				$addressPrint = $this->url->link('affiliate/order/addressprint', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' .$result['order_id'],'', 'SSL');
+				$updateBarcodeStock= $this->url->link('affiliate/order/OrderStockHistory', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' .$result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');
 			}else {
 				$updateStatusID =$this->url->link('affiliate/order/approved', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');
 				$approve = '';
@@ -113,6 +116,7 @@ public function index() {
 				$shipping = $this->url->link('affiliate/order/shipping', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' .$result['order_id'],'', 'SSL');			
 				$invoice = $this->url->link('affiliate/order/invoice', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' .$result['order_id'],'', 'SSL');
 				$addressPrint = $this->url->link('affiliate/order/addressprint', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' .$result['order_id'],'', 'SSL');
+				$updateBarcodeStock= $this->url->link('affiliate/order/OrderStockHistory', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' .$result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');
 			}
 			$data['transactions'][] = array(
 				'order_id'      		=> $result['order_id'],
@@ -126,6 +130,7 @@ public function index() {
 				'shipping'			=> $shipping,
 				'invoice'			=> $invoice,
 				'addressPrint' 		=> $addressPrint,
+				'updateBarcodeStock' => $updateBarcodeStock,
 				'showHistory' 	=> $showHistory,
 				'showDownload' => $showDownload,
 				'date_modified'  => date($this->language->get('datetime_format'), strtotime($result['date_modified']))
@@ -235,6 +240,205 @@ if($order_info){
 $this->response->redirect($this->url->link('affiliate/order', '', 'SSL')); // wan
 	}			
 }
+// bom add update order and update stock 
+public function OrderStockHistory() {
+		if (!$this->affiliate->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('affiliate/order', '', 'SSL');
+
+			$this->response->redirect($this->url->link('affiliate/login', '', 'SSL'));
+		}
+		$this->load->language('account/order');
+		$this->load->language('affiliate/order');
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$data['breadcrumbs'] = array();
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('text_home'),
+			'href' => $this->url->link('common/home')
+		);
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('text_account'),
+			'href' => $this->url->link('affiliate/account', '', 'SSL')
+		);
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('text_transaction'),
+			'href' => $this->url->link('affiliate/order', '', 'SSL')
+		);
+			
+		$this->load->model('affiliate/order');
+
+		$data['text_order_detail'] = '';//$this->language->get('text_order_detail');
+		$data['text_no_results'] = $this->language->get('text_no_results');
+		$data['text_order'] = $this->language->get('text_order');
+		$data['history_title'] = $this->language->get('history_title');
+		$data['text_history'] = $this->language->get('text_history');
+		$data['text_upload_head'] = $this->language->get('text_upload_head');		
+		$data['text_loading'] = $this->language->get('text_loading');
+		
+		$data['entry_order_status'] = $this->language->get('entry_order_status');
+		$data['entry_comment'] = $this->language->get('entry_comment');
+		$data['entry_filename'] = $this->language->get('entry_filename');
+		
+		$data['back'] = $this->url->link('affiliate/order', '', 'SSL');		
+		
+		$data['button_back'] = $this->language->get('button_back');
+		$data['button_history_add'] = $this->language->get('button_history_add');
+		$data['button_upload'] = $this->language->get('button_upload');
+		$data['button_save'] = $this->language->get('button_save');	
+			
+		$data['column_date_added'] = $this->language->get('column_date_added');
+		$data['column_status'] = $this->language->get('column_status');
+		$data['column_notify'] = $this->language->get('column_notify');
+		$data['column_comment'] = $this->language->get('column_comment');
+				
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
+		}
+		
+		$data['histories'] = array();
+		$results = $this->model_affiliate_order->getOrderHistory($this->request->get['order_id'], ($page - 1) * 5, 5);
+		foreach ($results as $result) {
+			$data['histories'][] = array(
+				'notify'     => $result['notify'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'status'     => $result['status'],
+				'affiliate_id'	=> $result['affiliate_id'],
+				'order_id'     => $result['order_id'],
+				'order_status_id'     => $result['order_status_id'],
+				'comment'    => nl2br($result['comment']),
+				'date_added' => date($this->language->get('datetime_format'), strtotime($result['date_added']))
+			);
+		}
+		$history_total = $this->model_affiliate_order->getTotalOrderHistories($this->request->get['order_id']);
+
+		$pagination = new Pagination();
+		$pagination->total = $history_total;
+		$pagination->page = $page;
+		$pagination->limit = 5;
+		$pagination->url = $this->url->link('affiliate/order/OrderHistory','affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id']. '&page={page}', 'SSL');
+			
+		$data['pagination'] = $pagination->render();
+
+		$data['results'] = sprintf($this->language->get('text_pagination'), ($history_total) ? (($page - 1) * 5) + 1 : 0, ((($page - 1) * 5) > ($history_total - 5)) ? $history_total : ((($page - 1) * 5) + 5), $history_total, ceil($history_total / 5));
+		
+		$data['order_status_id'] = $this->request->get['order_status_id'];
+		$data['order_id'] = $this->request->get['order_id'];
+		$data['affiliate_id'] = $this->request->get['affiliate_id'];
+		$data['order_statuses'] = $this->model_affiliate_order->getOrderStatuses();
+		$data['showOrder'] = $this->request->get['order_id'];
+		$data['column_left'] = $this->load->controller('common/column_left');
+		$data['column_right'] = $this->load->controller('common/column_right');
+		$data['content_top'] = $this->load->controller('common/content_top');
+		$data['content_bottom'] = $this->load->controller('common/content_bottom');
+		$data['footer'] = $this->load->controller('common/footer');
+		$data['header'] = $this->load->controller('common/headeraff');
+		
+		if (isset($this->request->post['filename'])) {
+			$data['filename'] = $this->request->post['filename'];
+		} elseif (!empty($download_info)) {
+			$data['filename'] = $download_info['filename'];
+		} else {
+			$data['filename'] = '';
+		}
+		if (isset($this->request->post['mask'])) {
+			$data['mask'] = $this->request->post['mask'];
+		} elseif (!empty($download_info)) {
+			$data['mask'] = $download_info['mask'];
+		} else {
+			$data['mask'] = '';
+		}
+		if (isset($this->error['filename'])) {
+			$data['error_filename'] = $this->error['filename'];
+		} else {
+			$data['error_filename'] = '';
+		}		
+
+		if (!isset($this->request->get['download_id'])) {		
+			$data['action'] = $this->url->link('affiliate/order/add','', 'SSL');
+		}
+
+			$this->load->model('account/order');
+			$this->load->model('catalog/product');
+			$this->load->model('tool/upload');
+
+		if (isset($this->request->get['order_id'])) {
+			$order_id = $this->request->get['order_id'];
+		} else {
+			$order_id = 0;
+		}
+
+			// Products
+			$data['products'] = array();
+						$data['column_name'] = $this->language->get('column_name');
+			$data['column_model'] = $this->language->get('column_model');
+			$data['column_quantity'] = $this->language->get('column_quantity');
+			$data['column_price'] = $this->language->get('column_price_affiliate');
+			$data['column_total'] = $this->language->get('column_total_affiliate');
+			$data['column_action'] = $this->language->get('column_action');
+			$data['column_date_added'] = $this->language->get('column_date_added');
+			$data['column_status'] = $this->language->get('column_status');
+			$data['column_comment'] = $this->language->get('column_comment');
+$order_info = $this->model_account_order->getOrder_affiliate($order_id);
+			$products = $this->model_account_order->getOrderProducts($this->request->get['order_id']);
+
+			foreach ($products as $product) {
+				$option_data = array();
+
+				$options = $this->model_account_order->getOrderOptions($this->request->get['order_id'], $product['order_product_id']);
+
+				foreach ($options as $option) {
+					if ($option['type'] != 'file') {
+						$value = $option['value'];
+					} else {
+						$upload_info = $this->model_tool_upload->getUploadByCode($option['value']);
+
+						if ($upload_info) {
+							$value = $upload_info['name'];
+						} else {
+							$value = '';
+						}
+					}
+
+					$option_data[] = array(
+						'name'  => $option['name'],
+						'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
+					);
+				}
+
+				$product_info = $this->model_catalog_product->getProduct($product['product_id']);
+
+				if ($product_info) {
+					$reorder = $this->url->link('account/order/reorder', 'order_id=' . $order_id . '&order_product_id=' . $product['order_product_id'], 'SSL');
+				} else {
+					$reorder = '';
+				}
+
+				$data['products'][] = array(
+					'name'     => $product['name'],
+					'model'    => $product['model'],
+					'option'   => $option_data,
+					'quantity' => $product['quantity'],
+					'price'    => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'total'    => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'reorder'  => $reorder,
+					'return'   => $this->url->link('account/return/add', 'order_id=' . $order_info['order_id'] . '&product_id=' . $product['product_id'], 'SSL')
+				);
+			}
+
+		//koy fix template to default only! 26/5/2016
+		/*if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/order_history.tpl')) {
+			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/affiliate/order_history.tpl', $data));
+		} else {*/
+			$this->response->setOutput($this->load->view('default/template/affiliate/order_stock_history.tpl', $data));
+		//}
+}
+
+
+// end update order and stock
 public function OrderHistory() {
 		if (!$this->affiliate->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('affiliate/order', '', 'SSL');
@@ -311,12 +515,12 @@ public function OrderHistory() {
 		$pagination = new Pagination();
 		$pagination->total = $history_total;
 		$pagination->page = $page;
-		$pagination->limit = 5;
+		$pagination->limit = 10;
 		$pagination->url = $this->url->link('affiliate/order/OrderHistory','affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id']. '&page={page}', 'SSL');
 			
 		$data['pagination'] = $pagination->render();
 
-		$data['results'] = sprintf($this->language->get('text_pagination'), ($history_total) ? (($page - 1) * 5) + 1 : 0, ((($page - 1) * 5) > ($history_total - 5)) ? $history_total : ((($page - 1) * 5) + 5), $history_total, ceil($history_total / 5));
+		$data['results'] = sprintf($this->language->get('text_pagination'), ($history_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($history_total - 10)) ? $history_total : ((($page - 1) * 10) + 10), $history_total, ceil($history_total / 10));
 		
 		$data['order_status_id'] = $this->request->get['order_status_id'];
 		$data['order_id'] = $this->request->get['order_id'];
