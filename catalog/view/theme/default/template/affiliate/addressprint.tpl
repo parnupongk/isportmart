@@ -6,10 +6,10 @@
 <!--title><?php //echo $heading_title; ?></title-->
 <?php if($data['payment_code'] == 'cod'){?>
 <!--title> ใบส่งของ </title-->
-<title> ใบรายการสั่งซื้อ </title>
+<title>ใบสั่งซื้อ #<?php echo  $order_id;  echo $data['payment_code']; ?> </title>
 <?php }else{?>
 <!--title>ใบส่งของ / ใบเสร็จรับเงิน</title-->
-<title> ใบรายการสั่งซื้อ </title>
+<title>ใบสั่งซื้อ #<?php echo  $order_id;  echo $data['payment_code']; ?> </title>
 <?php }?>
 <base href="<?php echo $base; ?>" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,8 +27,10 @@
 <div id="footer">
 
   <div style="page-break-after: always;">
-   
-    <table class="table table-bordered">
+  
+  <?php if($data['payment_code'] == 'cod'){?>
+
+   <table class="table table-bordered" style="height:175px;">
           <thead>
         <tr>
           <td style="width: 50%;"><b>ผู้ส่ง</b></td>
@@ -48,7 +50,29 @@
         </tr>
       </tbody>
     </table>
-    <table class="table table-bordered" style="margin-bottom:-20px;">
+    <br/>
+<?php }?>
+    <table class="table table-bordered" style="height:175px;">
+          <thead>
+        <tr>
+          <td style="width: 50%;"><b>ผู้ส่ง</b></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;"><address>
+            <strong><?php echo $store_name; ?></strong><br />
+            <strong><?php echo $store_owner; ?></strong><br />
+            <?php echo $store_address; ?>
+            </address>
+            <b><?php echo $text_telephone; ?></b> <?php echo $store_telephone; ?><br />
+            <?php if ($store_fax) { ?>
+            <b><?php echo $text_fax; ?></b> <?php echo $order['store_fax']; ?><br />
+            <?php } ?>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-bordered" style="margin-bottom:-20px;height:175px;">
       <thead>
         <tr>
           <td style="width: 50%;"><b>ผู้รับ</b></td>
@@ -60,7 +84,10 @@
           <td><address>
             <?php echo $shipping_address; ?>
             <br /><b><?php echo $text_telephone; ?></b> <?php echo $cust_telephone; ?>
-            </address></td>
+            </address>
+            <!-- <div class="pull-right">order no.<?php echo  $order_id;?></div> -->
+            
+            </td>
           <!--td><address>
             <?php echo $order['shipping_address']; ?>
             </address></td-->

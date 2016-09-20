@@ -25,7 +25,6 @@
 </head>
 <body >
 <div class="container">
-      <!--h1><?php //echo $heading_title; ?>#<?php //echo $order_id; ?></h1-->
       
       <?php if($data['payment_code'] == 'cod'){?>
 			<!--h1>ใบส่งของ </h1-->

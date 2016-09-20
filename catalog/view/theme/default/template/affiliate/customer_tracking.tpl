@@ -262,6 +262,9 @@ function showImagePreview(input){
       var mask = $("#mask").val();
       var order_id_upload = $("#order_id_upload").val();
       var affiliate_id_form = $("#affiliate_id_form").val();
+
+if( filename != "" && mask != "" )
+{
       $.ajax({
           type: "POST",
           url: "index.php?route=affiliate/order/confirm_pay",
@@ -274,7 +277,14 @@ function showImagePreview(input){
             location.reload();
           }
           });
-        });  
+          
+  }
+  else{
+    alert("การเพิ่มรูปไม่สำเร็จกรุณาติดต่อที่เบอร์ 02-502-6505");
+  }
+
+});
+
 $('#button-upload').on('click', function() {
 $('#form-upload').remove();
 $('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');

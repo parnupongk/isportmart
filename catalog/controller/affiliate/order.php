@@ -79,7 +79,7 @@ public function index() {
 			$order_id = $result['order_id'];
 				
 			if ($result['order_status_id'] == 15) {
-				$approve = $this->url->link('affiliate/order/approved', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');
+				$approve = $this->url->link('affiliate/order/approved', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'] .'&page='.$page,'', 'SSL');
 				$shipping = '';
 				$invoice = '';
 				$updateStatusID ='';
@@ -89,7 +89,7 @@ public function index() {
 				$updateBarcodeStock='';
 			/*if($order_status_id != 3 and $order_status_id != 27){*/	
 			}else if ($result['order_status_id'] == 2) {
-				$approve = $this->url->link('affiliate/order/approved', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');
+				$approve = $this->url->link('affiliate/order/approved', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'] .'&page='.$page,'', 'SSL');
 				$shipping = '';
 				$invoice = '';
 				$updateStatusID ='';
@@ -99,7 +99,7 @@ public function index() {
 				$updateBarcodeStock='';
 			/*if($order_status_id != 3 and $order_status_id != 27){*/	
 			}else if($result['order_status_id'] == 3 || $result['order_status_id'] == 27) {
-				$updateStatusID =$this->url->link('affiliate/order/approved', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');
+				$updateStatusID =$this->url->link('affiliate/order/approved', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'] .'&page='.$page,'', 'SSL');
 				$approve = '';
 				$showHistory =$this->url->link('affiliate/order/OrderHistory','affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');			
 				$showDownload =$this->url->link('affiliate/order/Download_file','affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');							
@@ -108,7 +108,7 @@ public function index() {
 				$addressPrint = $this->url->link('affiliate/order/addressprint', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' .$result['order_id'],'', 'SSL');
 				$updateBarcodeStock= $this->url->link('affiliate/order/OrderStockHistory', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' .$result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');
 			}else {
-				$updateStatusID =$this->url->link('affiliate/order/approved', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');
+				$updateStatusID =$this->url->link('affiliate/order/approved', 'affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'] .'&page='.$page,'', 'SSL');
 				$approve = '';
 				$showHistory =$this->url->link('affiliate/order/OrderHistory','affiliate_id=' .$result['affiliate_id']. '&order_id=' . $result['order_id']. '&order_status_id=' . $result['order_status_id'],'', 'SSL');			
 				$showDownload ='';

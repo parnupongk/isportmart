@@ -167,7 +167,7 @@
               <?php if ($order_status) { ?>
               <tr>
                 <td><?php echo $text_order_status; ?></td>
-                <td id="order-status"><?php echo $order_status; ?></td>
+                <td id="order-status"><?php echo $order_status; ?>	</td>
               </tr>
               <?php } ?>
               <?php if ($comment) { ?>
@@ -335,7 +335,7 @@
                 	} else {
                 		$vhost = $_SERVER['HTTP_HOST'];
                 	}	
-                	echo "<img src=http://" . $vhost . "/system/download/".$confirm_picname."><br>Filename:".$confirm_picname."&nbsp;&nbsp;Date added:".$confirm_pic_date_added. "<br>"; 
+                	echo "<img width=500px src=http://" . $vhost . "/system/download/".$confirm_picname."><br>Filename:".$confirm_picname."&nbsp;&nbsp;Date added:".$confirm_pic_date_added. "<br>"; 
   						?>
   						 <?php }else{ ?>
   						 <td><?php echo $text_notfound; ?></td>

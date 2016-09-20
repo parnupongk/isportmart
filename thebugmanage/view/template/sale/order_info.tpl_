@@ -6,7 +6,8 @@
       	<!--nid add 18/3/2016 16:15 -->
       	 <?php if($filter_user_group != 'CustService' && $filter_user_group != 'Agent'){ ?>
       	<a href="<?php echo $invoice; ?>" target="_blank" data-toggle="tooltip" title="<?php echo $button_invoice_print; ?>" class="btn btn-info"><i class="fa fa-print"></i></a> 
-      	<a href="<?php echo $shipping; ?>" target="_blank" data-toggle="tooltip" title="<?php echo $button_shipping_print; ?>" class="btn btn-info"><i class="fa fa-truck"></i></a> 
+      	<a href="<?php echo $shipping; ?>" target="_blank" data-toggle="tooltip" title="<?php echo $button_shipping_print; ?>" class="btn btn-info"><i class="fa fa-truck"></i></a>
+        <a href="<?php echo $address; ?>" target="_blank" data-toggle="tooltip" title="<?php echo $button_shipping_print; ?>" class="btn btn-info"><i class="fa fa-print"></i></a> 
       	<?php if($filter_user_group == 'Administrator'  ){ ?>
       	<a href="<?php echo $edit; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a> 
       	<?php }  //Administrator ?>        
@@ -334,7 +335,7 @@
                 	} else {
                 		$vhost = $_SERVER['HTTP_HOST'];
                 	}	
-                	echo "<img  src=http://" . $vhost . "/system/download/".$confirm_picname."><br>Filename:".$confirm_picname."&nbsp;&nbsp;Date added:".$confirm_pic_date_added. "<br>"; 
+                	echo "<img width="500px" class="img" src=http://" . $vhost . "/system/download/".$confirm_picname."><br>Filename:".$confirm_picname."&nbsp;&nbsp;Date added:".$confirm_pic_date_added. "<br>"; 
   						?>
   						 <?php }else{ ?>
   						 <td><?php echo $text_notfound; ?></td>
@@ -445,7 +446,7 @@
                     &nbsp;<small> - <?php echo $option['name']; ?>: <a href="<?php echo $option['href']; ?>"><?php echo $option['value']; ?></a></small>
                     <?php } ?>
                     <?php } ?></td>
-                  <td class="text-left"><?php echo $product['model']; ?></td>
+                  <td class="text-left" ><?php echo $product['model']; ?></td>
                   <td class="text-right"><?php echo $product['quantity']; ?></td>
                   <td class="text-right"><?php echo $product['price']; ?></td>
                   <td class="text-right"><?php echo $product['total']; ?></td>

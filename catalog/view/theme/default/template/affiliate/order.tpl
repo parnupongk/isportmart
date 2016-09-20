@@ -51,7 +51,7 @@
              <a href="<?php echo $transaction['invoice']; ?>" target="_blank" data-toggle="tooltip" title="<?php echo $button_invoice_print; ?>" class="btn btn-info"><i class="fa fa-print"></i></a>
              <!-- bom add 2016/09/02-->
              <a href="<?php echo $transaction['addressPrint']; ?>" target="_blank" data-toggle="tooltip" title="print address" class="btn btn-success"><i class="fa fa-print"></i></a>                
-             <a href="<?php echo $transaction['updateBarcodeStock']; ?>" data-toggle="tooltip" title="update barcode stock" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+             <a href="<?php echo $transaction['updateBarcodeStock']; ?>" data-toggle="tooltip" title="update barcode stock" class="btn btn-primary"><i class="fa fa-barcode"></i></button></a>
              <a href="<?php echo $transaction['showHistory']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>             		 
 
               <?php } ?>
