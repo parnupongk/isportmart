@@ -21,16 +21,40 @@
 <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
 <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
 <script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+<style>
+@media print { div.page-break { display: block; page-break-before: always;margin-left:2px;  } }
 
+</style>
 </head>
 <body >
-<div id="footer">
+<?php
 
-  <div style="page-break-after: always;">
-  
+function get_browser_name($user_agent)
+{
+    if (strpos($user_agent, 'Opera') || strpos($user_agent, 'OPR/')) return 'Opera';
+    elseif (strpos($user_agent, 'Edge')) return 'Edge';
+    elseif (strpos($user_agent, 'Chrome')) return 'Chrome';
+    elseif (strpos($user_agent, 'Safari')) return 'Safari';
+    elseif (strpos($user_agent, 'Firefox')) return 'Firefox';
+    elseif (strpos($user_agent, 'MSIE') || strpos($user_agent, 'Trident/7')) return 'Internet Explorer';
+    
+    return 'Other';
+}
+
+// Usage:
+
+//echo get_browser_name($_SERVER['HTTP_USER_AGENT']);
+
+?>
+
+<?php if( get_browser_name($_SERVER['HTTP_USER_AGENT']) == 'Internet Explorer' || get_browser_name($_SERVER['HTTP_USER_AGENT']) == 'Edge' ) { ?>
+<div> <h1>Printer not support , please print with chrome Browser</h1> </div>
+<?php } else { ?>
+
+
   <?php if($data['payment_code'] == 'cod'){?>
-
-   <table class="table table-bordered" style="height:175px;">
+<div class="page-break">
+   <table class="table table-bordered" style="height:175px;width:280px;">
           <thead>
         <tr>
           <td style="width: 50%;"><b>ผู้ส่ง</b></td>
@@ -50,9 +74,11 @@
         </tr>
       </tbody>
     </table>
-    <br/>
+    </div>
 <?php }?>
-    <table class="table table-bordered" style="height:175px;">
+<div class="page-break">
+
+    <table class="table table-bordered" style="height:175px;width:280px;">
           <thead>
         <tr>
           <td style="width: 50%;"><b>ผู้ส่ง</b></td>
@@ -72,7 +98,10 @@
         </tr>
       </tbody>
     </table>
-    <table class="table table-bordered" style="margin-bottom:-20px;height:175px;">
+</div>
+<div class="page-break">
+
+    <table class="table table-bordered" style="height:175px;width:280px;">
       <thead>
         <tr>
           <td style="width: 50%;"><b>ผู้รับ</b></td>
@@ -85,16 +114,40 @@
             <?php echo $shipping_address; ?>
             <br /><b><?php echo $text_telephone; ?></b> <?php echo $cust_telephone; ?>
             </address>
-            <!-- <div class="pull-right">order no.<?php echo  $order_id;?></div> -->
-            
             </td>
-          <!--td><address>
-            <?php echo $order['shipping_address']; ?>
-            </address></td-->
         </tr>
       </tbody>
     </table>
-  </div>
+    </div>
+
+<div class="page-break">
+
+<table class="table table-bordered">
+<tr><td colspan='2'>ใบสั่งซื้อ #<?php echo  $order_id; ?> การชำระเงิน <?php echo $data['payment_code']; ?></td></tr>
+            <?php 
+            	$cnt = 0;
+            	foreach ($products as $product) { 
+            		$cnt = $cnt + 1;
+            ?>
+            
+            <tr>
+              <!-- td class="text-left"><?php echo $product['model']; ?><?php echo $product['name']; ?></td -->
+              <td class="text-left">
+                <?php foreach ($product['option'] as $option) { ?>
+                &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
+                <?php } ?></td>
+              <td class="text-right"><?php echo $product['quantity']; ?></td>
+            </tr>
+          
+            <?php } ?>
+              </table>
 </div>
+
+<script>
+window.print();
+</script>
+
+<?php }?>
 </body>
+
 </html>
