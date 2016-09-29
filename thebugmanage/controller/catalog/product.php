@@ -11,7 +11,33 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->getList();
 	}
+	
+	public function barcode(){
 
+		$this->load->model('catalog/product');
+		$product_id = $this->request->get['product_id'];
+		
+		$product_barcodes  = $this->model_catalog_product->getProductBarCode($product_id);
+		//$count =0;
+
+		$data['product_barcodes'] = $product_barcodes;
+		//echo count($product_barcodes);
+		/*foreach($product_barcodes as $product_barcode)
+		{
+			echo $product_barcode['barcode'];
+			echo $product_barcode['b_id'];
+					$data['product_barcodes'][] = array(
+				'product_id' => $product_barcode['product_id'],
+				'b_id'       => $product_barcode['b_id'],
+				'b_barcode'      => $product_barcode['barcode'],
+					);
+			$count = $count +1;
+		}*/
+
+		$this->response->setOutput($this->load->view('catalog/product_barcode.tpl', $data));
+
+		//$this->response->redirect($this->url->link('catalog/product_barcode', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+	}
 	public function add() {
 		$this->load->language('catalog/product');
 
@@ -762,6 +788,8 @@ class ControllerCatalogProduct extends Controller {
 
 		$data['cancel'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
+		$data['barcode'] = $this->url->link('catalog/product/barcode', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL');
+
 		if (isset($this->request->get['product_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
 		}
@@ -835,7 +863,7 @@ class ControllerCatalogProduct extends Controller {
 			} elseif (!empty($product_info)) {
 				$data['warrantyday'] = $product_info['warrantyday'];
 			} else {
-				$data['warrantyday'] = 7;
+				$data['warrantyday'] = 3;
 			}
 			// -- one add 2/2 -end			
 
@@ -943,7 +971,7 @@ class ControllerCatalogProduct extends Controller {
 		} elseif (!empty($product_info)) {
 			$data['marginvalue'] = $product_info['marginvalue'];
 		} else {
-			$data['marginvalue'] = 0;
+			$data['marginvalue'] = 0.00;
 		}
 		
 		if (isset($this->request->post['margintype'])) {
