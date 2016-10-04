@@ -110,9 +110,10 @@
               <td class="text-right"><?php echo $product['price']; ?></td>
               <td class="text-right"> 
               <textarea name="barcode" rows="1" id="input-barcode" class="form-control"></textarea>        
-                    <div class="input-group btn-block" style="max-width: 200px;">    
+                    <div class="input-group btn-block" style="max-width: 200px;"> 
+                    <?php echo $product['order_product_id']; ?>   
                     <span class="input-group-btn">                    
-                    <button type="button" data-toggle="tooltip" title="" class="btn btn-primary" onclick="cart.remove('<?php echo $product['key']; ?>');"><i class="fa fa-barcode"></i></button></span></div>
+                    <button id='button-barcode' type="button" data-toggle="tooltip" title="" class="btn btn-primary" onclick="cart.remove('<?php echo $product['key']; ?>');"><i class="fa fa-barcode"></i></button></span></div>
               </td>
             </tr>
             <?php } ?>
