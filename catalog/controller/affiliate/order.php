@@ -167,6 +167,15 @@ public function index() {
 			$this->response->setOutput($this->load->view('default/template/affiliate/order.tpl', $data));
 		//}
 }
+
+public function updateProductBarcode()
+{
+	$this->load->model('affiliate/order');
+	$this->model_affiliate_order->updateProductBarcode($this->request->post['orderProductId'],$this->request->post['barcode']);
+	echo $this->request->post['orderProductId'];
+	echo $this->request->post['barcode'];
+}
+
 public function approved() {
 	$this->load->language('checkout/order');
 	$this->load->model('checkout/order');

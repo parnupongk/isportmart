@@ -178,11 +178,11 @@ if(!empty($this->request->get['order_id'])){
 		}else if (!empty($this->session->data['user_group'])&& $this->session->data['user_group'] =='NarLabs') {
 			// bom update 20161025
 			return $this->load->view('common/headercs_bell.tpl', $data);
-		}else {
+		} else {
 			return $this->load->view('common/header.tpl', $data);
 		}
 }		
-// nid add 19/4/2016 16:46		
+// nid add 19/4/2016 16:46
 		// one add - end
 		//return $this->load->view('common/header.tpl', $data);
 	}

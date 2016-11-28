@@ -109,11 +109,11 @@
               <td class="text-right"><?php echo $product['quantity']; ?></td>
               <td class="text-right"><?php echo $product['price']; ?></td>
               <td class="text-right"> 
-              <textarea name="barcode" rows="1" id="input-barcode" class="form-control"></textarea>        
+              <textarea name="input-barcode" rows="1" id="input-barcode" class="form-control"></textarea>  
+               <input type="hidden" name="order_product_id" value="<?php echo $product['order_product_id']; ?> ">      
                     <div class="input-group btn-block" style="max-width: 200px;"> 
-                    <?php echo $product['order_product_id']; ?>   
                     <span class="input-group-btn">                    
-                    <button id='button-barcode' type="button" data-toggle="tooltip" title="" class="btn btn-primary" onclick="cart.remove('<?php echo $product['key']; ?>');"><i class="fa fa-barcode"></i></button></span></div>
+                    <button id='button-barcode' type="button" data-toggle="tooltip" title="" class="btn btn-primary"><i class="fa fa-barcode"></i></button></span></div>
               </td>
             </tr>
             <?php } ?>
@@ -213,6 +213,32 @@
 <?php echo $content_bottom; ?></div>
 <?php echo $column_right; ?></div>
 <script type="text/javascript">
+$('#button-barcode').on('click',function(){
+  var input_barcode = $('#input-barcode').val();
+  var order_product_id = $('#order_product_id').val();
+
+  //alert(input_barcode);
+  var datastring = {};
+							$.ajax({
+								type:'POST',
+								url:'index.php?route=affiliate/order/updateProductBarcode',
+								data:'orderProductId='+order_product_id+'&barcode='+input_barcode,
+								waitMsg:'Loading...',
+								beforeSend: function() {
+								$('#button-barcode').button('loading');			
+								},
+								complete: function() {
+								$('#button-barcode').button('reset');	
+								//window.location.assign("http://<?php echo $vhost  ?>/index.php?route=affiliate/order")
+         
+								},success:function(data){
+								  
+									// location.reload();
+									 alert('update success');
+								}
+							});				
+});
+
 $('#button-history').on('click', function() {
   var affiliate_id = $('#affiliate_id_form').val();
   var order_id    = $('#order_id_form').val();

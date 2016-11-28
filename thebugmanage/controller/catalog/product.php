@@ -251,6 +251,7 @@ class ControllerCatalogProduct extends Controller {
 	}
 
 	protected function getList() {
+
 		if (isset($this->request->get['filter_name'])) {
 			$filter_name = $this->request->get['filter_name'];
 		} else {
@@ -370,6 +371,14 @@ class ControllerCatalogProduct extends Controller {
 		$data['delete'] = $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 		$data['products'] = array();
+
+		if($this->user->getId() == '80')
+		{
+			// bom update 20161020
+			// fix if vender narlabs login with see only narlabs product 
+			//echo $this->user->getId();
+			$filter_affiliate_id = '13';
+		}
 
 		$filter_data = array(
 			'filter_name'	  => $filter_name,

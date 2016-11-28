@@ -127,6 +127,10 @@ if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
 
 		return $query->row['total'];
 	}
+	public function updateProductBarcode($orderProductId,$barcode)
+	{
+		//$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_download WHERE order_id = '" .$this->db->escape($data['order_id_upload']). "'");	
+	}
   public function getTotalTransferForBell() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id in('16','19','20','22','23','25','26','27') and affiliate_id = '" . (int)$this->affiliate->getId() . "'");
 

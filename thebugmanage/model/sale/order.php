@@ -262,6 +262,12 @@ class ModelSaleOrder extends Model {
 			$sql .= " and now() >= date_add(o.date_modified,interval 1 day)";
 			}
 		}
+
+		//echo $data['filter_user_group'];
+		if($data['filter_user_group'] == 'NarLabs' ){
+		$sql .= " and o.affiliate_id=13 ";
+		}
+
 		if (!empty($data['filter_customer'])) {
 			$sql .= " AND CONCAT(o.firstname, ' ', o.lastname) LIKE '%" . $this->db->escape($data['filter_customer']) . "%'";
 		}
@@ -571,6 +577,7 @@ class ModelSaleOrder extends Model {
 		"' UNION SELECT a.date_added, 'รับแจ้งเรื่อง' AS status, a.comment, '0' AS notify , b.firstname AS user_info FROM oc_customer_history a LEFT JOIN oc_user b ON a.user_id=b.user_id  WHERE order_id = '" .  // one add @ 3/5/2016
 		// "' UNION SELECT date_added, 'รับแจ้งเรื่อง' AS status, comment, '0' AS notify , (select a.firstname from oc_user a where a.user_id=user_id ) AS user_info  FROM oc_customer_history WHERE order_id = '" .   // one remark @ 3/5/2016
 		(int)$order_id . "' ORDER BY date_added ASC LIMIT " . (int)$start . "," . (int)$limit);
+//		(int)$order_id . "' ORDER BY date_added ASC ");
 
 
 //SELECT oh.date_added, os.name AS status, oh.comment, oh.notify, (select firstname from oc_user where user_id=oh.user_id union select firstname from oc_affiliate where affiliate_id=oh.affiliate_id)  user_info
@@ -583,7 +590,9 @@ class ModelSaleOrder extends Model {
 	}
 
 	public function getTotalOrderHistories($order_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "order_history WHERE order_id = '" . (int)$order_id . "'");
+//		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "order_history WHERE order_id = '" . (int)$order_id . "'");
+		$query = $this->db->query("select z.cnt+ y.cnt as total  from (SELECT count(*) cnt FROM  oc_order_history WHERE order_id = '" . (int)$order_id . "' ) z, 
+												 (SELECT count(*) cnt FROM oc_customer_history a WHERE a.order_id = '" . (int)$order_id . "' ) y ");
 
 		return $query->row['total'];
 	}
