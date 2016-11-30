@@ -379,6 +379,13 @@ class ControllerCatalogProduct extends Controller {
 			//echo $this->user->getId();
 			$filter_affiliate_id = '13';
 		}
+		else if($this->user->getId() == '81')
+		{
+			// bom update 20161129
+			// fix if vender DNA login with see only DNA product 
+			//echo $this->user->getId();
+			$filter_affiliate_id = '14';
+		}
 
 		$filter_data = array(
 			'filter_name'	  => $filter_name,

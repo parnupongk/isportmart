@@ -61,7 +61,7 @@ class ControllerCommonDashboard extends Controller {
 		
 			if ($this->session->data['user_group'] =='CustService' || $this->session->data['user_group'] =='Agent') {
 			$this->response->setOutput($this->load->view('common/dashboardcs.tpl', $data));
-		}else if ($this->session->data['user_group'] =='NarLabs') {
+		}else if ($this->session->data['user_group'] =='NarLabs' || $this->session->data['user_group'] =='DNA') {
 			// bom update 20161025
 			$this->response->setOutput($this->load->view('common/dashboardcs.tpl', $data));
 		}else {

@@ -264,8 +264,12 @@ class ModelSaleOrder extends Model {
 		}
 
 		//echo $data['filter_user_group'];
+		// bom update 2016/11/29
 		if($data['filter_user_group'] == 'NarLabs' ){
 		$sql .= " and o.affiliate_id=13 ";
+		}
+		if($data['filter_user_group'] == 'DNA' ){
+		$sql .= " and o.affiliate_id=14 ";
 		}
 
 		if (!empty($data['filter_customer'])) {
