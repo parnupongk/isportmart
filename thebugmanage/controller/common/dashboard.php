@@ -12,7 +12,7 @@ class ControllerCommonDashboard extends Controller {
 		$data['text_activity'] = $this->language->get('text_activity');
 		$data['text_recent'] = $this->language->get('text_recent');
     //nid add 22/03/2016 15:31
-    //print_r ($this->session->data['user_id']);
+    //print_r ($this->session->data['user_group']);
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
@@ -63,6 +63,7 @@ class ControllerCommonDashboard extends Controller {
 			$this->response->setOutput($this->load->view('common/dashboardcs.tpl', $data));
 		}else if ($this->session->data['user_group'] =='NarLabs' || $this->session->data['user_group'] =='DNA') {
 			// bom update 20161025
+			print_r ($this->session->data['user_group']);
 			$this->response->setOutput($this->load->view('common/dashboardcs.tpl', $data));
 		}else {
 			$this->response->setOutput($this->load->view('common/dashboard.tpl', $data));
