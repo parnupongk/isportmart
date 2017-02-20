@@ -72,7 +72,10 @@
                   <?php } ?>
                 </select>
               </div>
-
+              <!--div class="form-group">
+                <label class="control-label" for="input-total"><?php echo $entry_total; ?></label>
+                <input type="text" name="filter_total" value="<?php echo $filter_total; ?>" placeholder="<?php echo $entry_total; ?>" id="input-total" class="form-control" />
+              </div-->
 
 	      <div class="form-group">
                 <label class="control-label" for="input-telephone"><?php echo $entry_telephone; ?></label>
@@ -89,7 +92,14 @@
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span></div>
               </div>
-
+              <!--div class="form-group">
+                <label class="control-label" for="input-date-modified"><?php echo $entry_date_modified; ?></label>
+                <div class="input-group date">
+                  <input type="text" name="filter_date_modified" value="<?php echo $filter_date_modified; ?>" placeholder="<?php echo $entry_date_modified; ?>" data-date-format="YYYY-MM-DD" id="input-date-modified" class="form-control" />
+                  <span class="input-group-btn">
+                  <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                  </span></div>
+              </div-->
               <div class="form-group">
                 <label class="control-label" for="input-email"><?php echo $entry_email; ?></label>                
                 <input type="text" name="filter_email" value="<?php echo $filter_email; ?>" placeholder="<?php echo $entry_email; ?>" id="input-email" class="form-control" />
@@ -194,9 +204,7 @@
                   <td class="text-left"><?php echo $order['cust_taxid'];  //one add  ?></td>
                   <td class="text-left"><?php echo $order['invoice_no']; //one add   ?></td>
                   
-                  <td class="text-left"><?php echo $order['status']; ?>
-                  	<br/><?php echo $order['payment_code']; ?>
-                  	</td>
+                  <td class="text-left"><?php echo $order['status']; ?></td>
                   <td class="text-left"><?php echo $order['affiliate_name'];  //one add   ?></td>
                   <td class="text-left"><?php echo $order['dnis'];  //koy add   ?></td>
                   <td class="text-right"><?php echo $order['total']; ?></td>

@@ -473,12 +473,13 @@ $('#button-cart').on('click', function() {
 				$('.text-danger').parent().addClass('has-error');
 			}
 
+      console.log(json['success']);
 			if (json['success']) {
 				$('.breadcrumb').after('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
         $('#cart-total').html(json['total']);
         // bom update
-				//$('#cart > button').html('<i class="fa fa-shopping-cart"></i> ' + json['total']);
+				//('#cart > button').html('<i class="fa fa-shopping-cart"></i> ' + json['total']);
 
 				$('html, body').animate({ scrollTop: 0 }, 'slow');
 

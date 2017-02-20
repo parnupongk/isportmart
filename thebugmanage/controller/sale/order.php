@@ -469,7 +469,7 @@ class ControllerSaleOrder extends Controller {
 				'cust_company' => $result['payment_company'],   // one add 
 				'cust_taxid' => $result['cust_taxid'],   // one add 
 				'customer_id' => $result['customer_id'],   // one add 
-				
+				'payment_code' => $result['payment_code'],
 				'shipping_code' => $result['shipping_code'],
 				'view'          => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, 'SSL'),
 				'edit'          => $this->url->link('sale/order/edit', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, 'SSL'),

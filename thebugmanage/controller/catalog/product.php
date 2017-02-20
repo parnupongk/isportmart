@@ -803,8 +803,12 @@ class ControllerCatalogProduct extends Controller {
 		}
 
 		$data['cancel'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL');
-
-		$data['barcode'] = $this->url->link('catalog/product/barcode', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL');
+		
+		if (!isset($this->request->get['product_id'])) {
+			$data['barcode'] = $this->url->link('catalog/product/barcode', 'token=' . $this->session->data['token']  . $url, 'SSL');			
+		} else {
+			$data['barcode'] = $this->url->link('catalog/product/barcode', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL');
+		}
 
 		if (isset($this->request->get['product_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
@@ -1255,6 +1259,7 @@ class ControllerCatalogProduct extends Controller {
 			$product_option_value_data = array();
 
 			if (isset($product_option['product_option_value'])) {
+				// bom update add barcode by option 20170127
 				foreach ($product_option['product_option_value'] as $product_option_value) {
 					$product_option_value_data[] = array(
 						'product_option_value_id' => $product_option_value['product_option_value_id'],
@@ -1266,7 +1271,8 @@ class ControllerCatalogProduct extends Controller {
 						'points'                  => $product_option_value['points'],
 						'points_prefix'           => $product_option_value['points_prefix'],
 						'weight'                  => $product_option_value['weight'],
-						'weight_prefix'           => $product_option_value['weight_prefix']
+						'weight_prefix'           => $product_option_value['weight_prefix'],
+						'barcode'           	  => $product_option_value['barcode']
 					);
 				}
 			}
@@ -1542,7 +1548,8 @@ class ControllerCatalogProduct extends Controller {
 				'limit'        => $limit
 			);
 
-			$results = $this->model_catalog_product->getProducts($filter_data);
+			//$results = $this->model_catalog_product->getProducts($filter_data);
+			$results = $this->model_catalog_product->getProducts_atc($filter_data);  // one mo @1/12/2016
 
 			foreach ($results as $result) {
 				$option_data = array();

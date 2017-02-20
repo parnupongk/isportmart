@@ -309,7 +309,7 @@ class ControllerCheckoutCart extends Controller {
 
 	public function add() {
 		$this->load->language('checkout/cart');
-
+		//echo("<script>console.log('PHP: testtttt');</script>");
 		$json = array();
 
 		if (isset($this->request->post['product_id'])) {
@@ -435,7 +435,7 @@ class ControllerCheckoutCart extends Controller {
 			$json['error']['affiliate'] = $this->language->get('error_affiliate');
 		}
 		}
-
+		
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
