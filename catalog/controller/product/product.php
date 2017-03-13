@@ -308,6 +308,10 @@ class ControllerProductProduct extends Controller {
 
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				$data['price'] = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+				// bom update 2016/12/28
+				$pricebid = $this->model_catalog_product->getProductPriceBids($this->request->get['product_id']);
+				$data['pricebid'] =  $pricebid;
+				$data['pricebidtxt'] = $this->currency->format($this->tax->calculate($this->model_catalog_product->getProductPriceBids($this->request->get['product_id']), $product_info['tax_class_id'], $this->config->get('config_tax')));
 			} else {
 				$data['price'] = false;
 			}
@@ -392,7 +396,14 @@ class ControllerProductProduct extends Controller {
 
 			$data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']);
 			$data['rating'] = (int)$product_info['rating'];
-			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
+			if (isset($this->session->data['agent_id'])) {
+				$desc = $product_info['description'];
+				$desc = substr_replace($desc, '', strpos($desc,'&lt;iframe')-1, strpos($desc,'iframe&gt;') - strpos($desc,'&lt;iframe'));
+			} else {
+				$desc = $product_info['description'];
+			}
+			//$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
+			$data['description'] = html_entity_decode($desc, ENT_QUOTES, 'UTF-8');
 			$data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
 			
 			if (!empty($this->session->data['cart'])) {
@@ -450,7 +461,8 @@ class ControllerProductProduct extends Controller {
 					'tax'         => $tax,
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $rating,
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
+					'pricebid'	  => $pricebid
 				);
 			}
 

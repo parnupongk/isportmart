@@ -104,10 +104,27 @@ class ModelTotalCoupon extends Model {
 
 		$this->load->model('checkout/coupon');
 
-		$coupon_info = $this->model_checkout_coupon->getCoupon($code);
-
+		//$coupon_info = $this->model_checkout_coupon->getCoupon($code);
+		
+		// one add - begin @ 15/09/2016
+		$coupon_info  = array();
+		if (!$coupon_info) {					
+			$coupon_query = $this->db->query("SELECT * FROM `oc_coupon` WHERE code = '" . $this->db->escape($code) . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
+			if ($coupon_query->num_rows) {
+				$coupon_info['coupon_id'] = $coupon_query->row['coupon_id'];
+				$coupon_info['type'] = $coupon_query->row['type'];
+				$coupon_info['discount'] = $coupon_query->row['discount'];
+			}
+		}
+		// one add - end @ 15/09/2016
+		
+			// debug			
+			//$log = new Log('coupon_debug.log');		
+			//$log->write( " coupon_info[coupon_id]  : " . $coupon_info['coupon_id'] . ", type= ".$coupon_info['type'].", disc=".$coupon_info['discount'] );
+				
 		if ($coupon_info) {
-			$this->db->query("INSERT INTO `" . DB_PREFIX . "coupon_history` SET coupon_id = '" . (int)$coupon_info['coupon_id'] . "', order_id = '" . (int)$order_info['order_id'] . "', customer_id = '" . (int)$order_info['customer_id'] . "', amount = '" . (float)$order_total['value'] . "', date_added = NOW()");
+//			$this->db->query("INSERT INTO `" . DB_PREFIX . "coupon_history` SET coupon_id = '" . (int)$coupon_info['coupon_id'] . "', order_id = '" . (int)$order_info['order_id'] . "', customer_id = '" . (int)$order_info['customer_id'] . "', amount = '" . (float)$order_total['value'] . "', date_added = NOW()");		// remark by one	
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "coupon_history` SET coupon_id = '" . (int)$coupon_info['coupon_id'] . "', order_id = '" . (int)$order_info['order_id'] . "', customer_id = '" . (int)$order_info['customer_id'] . "', ctype = '". $coupon_info['type'] ."', discount = '" . (float)$coupon_info['discount'] . "', amount = '" . (float)$order_total['value'] . "', date_added = NOW()");  // one	 add 
 		}
 	}
 

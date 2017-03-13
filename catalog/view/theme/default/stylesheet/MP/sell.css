@@ -1,0 +1,226 @@
+.banner-container {
+    width: 100%;
+    height: 300px;
+    opacity: .7;
+}
+.seller_info{
+    border-top: 1px solid #dddddd;
+    background: #345;
+    padding: 2px 20px;
+    overflow: hidden;
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    width: 92%;
+    border: none;
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    z-index: 9999;
+}
+.partner-thumb {
+    height: 100px;
+    width: 100px;
+    background-color: #FFF;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #ccc;
+    display: inline-block;
+}
+.seller_info img {
+    margin: 5px;
+    height: 50px;
+    width: 50px;
+    -webkit-transition: width 2s,height 2s;
+}
+.seller_info img:hover{
+    -webkit-transform: scale(1.3,1.2);
+    -o-transform: scale(1.3,1.2);
+    -moz-transform: scale(1.3,1.2);
+    transform: scale(1.3,1.2);
+    box-shadow: 0 0 5px #ccc;
+}
+
+.seller_info .div-img-circle {
+    margin: 5px;
+    height: 50px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+
+.seller_info .div-img-circle:hover{
+    -webkit-transform: scale(1.3,1.2);
+    -o-transform: scale(1.3,1.2);
+    -moz-transform: scale(1.3,1.2);
+    transform: scale(1.3,1.2);
+    box-shadow: 0 0 5px #ccc;
+}
+
+.seller-border {
+    border: medium double #345;
+    box-shadow: 10px 10px 10px #888AA8;
+}
+
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+    width: 65%;
+}
+.clear{
+    clear:both;
+}
+.text-white{
+    color: #ffffff;
+}
+label.control-label span:after{
+    font-family: FontAwesome;
+    color: #1E91CF;
+    content: "\f059";
+    margin-left: 4px;
+}
+.note-editor .btn-sm, .note-editor .btn-group-sm > .btn {
+    padding: 4px 9px;
+    font-size: 11px;
+    line-height: 1.5;
+    border-radius: 2px;
+}
+
+.note-editor .btn-default {
+    color: #555555; 
+    background-color: #ffffff;
+    border-color: #cccccc;
+    background-image: none;
+}
+
+.note-editor .fa{
+    font-size: 10px;
+}
+
+img.click-file{
+  cursor: pointer;
+  max-width: 115px;
+  max-height: 115px;
+}
+
+/* Tiles */
+.tile {
+    margin-bottom: 15px;
+    border-radius: 3px;
+    background-color: #279FE0;
+    color: #FFFFFF;
+    transition: all 1s;
+}
+.tile:hover {
+    opacity: 0.95;
+}
+
+.tile a {
+    color: #FFFFFF;
+}
+.tile-heading {
+    padding: 5px 8px;
+    text-transform: uppercase;
+    background-color: #1E91CF;
+    color: #FFF;
+}
+.tile .tile-heading .pull-right {
+    transition: all 1s; 
+    opacity: 0.7;
+}
+.tile:hover .tile-heading .pull-right {
+    opacity: 1;
+}
+.tile-body {
+    padding: 15px;
+    color: #FFFFFF;
+    line-height: 48px;  
+}
+.tile .tile-body i {
+    font-size: 50px;
+    opacity: 0.3;
+    transition: all 1s;
+}
+.tile:hover .tile-body i {
+    color: #FFFFFF;
+    opacity: 1;
+}
+.tile .tile-body h2 {
+    font-size: 32px;
+    margin-top: 0;
+    color: #ffffff;
+}
+.tile-footer {
+    padding: 5px 8px;
+    background-color: #3DA9E3;
+}
+
+@media screen{
+    .table thead td {
+        font-weight: bold;
+    }
+    .table a.asc:after,.table a.ASC:after {
+        content: " \f107";
+        font-family: FontAwesome;
+        font-size: 14px;
+    }
+
+    .table a.desc:after,.table a.DESC:after {
+        content: " \f106";
+        font-family: FontAwesome;
+        font-size: 14px;
+    }
+}
+
+  @media screen and (min-width: 991px) {
+    .wk_sellerPartner #wkset, #wkproducts{
+      width: 24%;
+      margin: 0px 1px;
+    }
+  }
+  @media screen and (max-width: 992px) and (min-width: 767px) {
+    .wk_sellerPartner #wkset, #wkproducts{
+      width: 49%;
+      margin: 0px 0.5px;
+    }    
+  }
+  @media screen and (max-width: 768px) and (min-width: 0px) {
+    .wk_sellerPartner #wkset, #wkproducts{
+      width: 99%;
+      margin: 0px auto;
+    }    
+  }
+
+#wk_seller_info_container{
+    width: 100%;
+    margin: 10px 0;
+    position: absolute;
+    bottom: 29px;
+    display: none;
+}
+
+#wk_seller_info_profpic{
+    margin-right: 20px;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+#wk_seller_info_box{
+    display: inline-block;
+    line-height: 0px;
+}
+
+#wk_seller_info_rating{
+    position: relative;
+    cursor: pointer;
+}
+
+#wk_seller_info_rating > .fa{
+    font-size: 10px;
+}
+
+#wk_seller_info_rating > .fa > .fa-stack-1x {
+    color:#3B9911;
+}

@@ -478,6 +478,7 @@
             <fieldset>
               <legend><?php echo $text_history; ?></legend>
               <form class="form-horizontal">
+
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-order-status"><?php echo $entry_order_status; ?></label>
                   <div class="col-sm-10">
@@ -491,6 +492,8 @@
                       <?php } ?>
                       <?php } ?>
                     </select>
+                    <br/>
+                    <font color=blue>กรณี ตัวเลือกของ [สถานะคำสั่งซื้อ] ไม่เปลี่ยน กรุณา</font> <font color=purple><b>กด F5</b></font>
                   </div>
                 </div>
                 <div class="form-group">

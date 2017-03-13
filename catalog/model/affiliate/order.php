@@ -127,10 +127,6 @@ if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
 
 		return $query->row['total'];
 	}
-	public function updateProductBarcode($orderProductId,$barcode)
-	{
-		//$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_download WHERE order_id = '" .$this->db->escape($data['order_id_upload']). "'");	
-	}
   public function getTotalTransferForBell() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id in('16','19','20','22','23','25','26','27') and affiliate_id = '" . (int)$this->affiliate->getId() . "'");
 
@@ -215,7 +211,7 @@ if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
 			$limit = 5;
 		}
 		
-		$query = $this->db->query("SELECT oh.order_id,oh.order_status_id,oh.date_added, os.name AS status, oh.comment, oh.notify,oh.affiliate_id FROM " . DB_PREFIX . "order_history oh LEFT JOIN " . DB_PREFIX . "order_status os ON oh.order_status_id = os.order_status_id WHERE oh.order_id = '" . (int)$order_id . "' AND oh.order_status_id in('2','3','15','16','19','20','21','22','23','24','25','26','27','29') AND os.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY oh.date_added DESC  LIMIT " . (int)$start . "," . (int)$limit);
+		$query = $this->db->query("SELECT oh.order_id,oh.order_status_id,oh.date_added, os.name AS status, oh.comment, oh.notify,oh.affiliate_id FROM " . DB_PREFIX . "order_history oh LEFT JOIN " . DB_PREFIX . "order_status os ON oh.order_status_id = os.order_status_id WHERE oh.order_id = '" . (int)$order_id . "' AND oh.order_status_id in('2','3','7','10','28','14','15','16','19','20','21','22','23','24','25','26','27','29') AND os.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY oh.date_added DESC  LIMIT " . (int)$start . "," . (int)$limit);
 		return $query->rows;
 	}
 	public function getTotalOrderHistories($order_id) {

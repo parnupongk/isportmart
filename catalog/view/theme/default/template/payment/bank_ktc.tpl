@@ -14,7 +14,7 @@
 	   <div class="pull-right">
  <form action="https://paygate.ktc.co.th/ktc/eng/merchandize/payment/payForm.jsp" name="payFormCcard" method="post" >
  <input type="hidden" name="orderRef" value="<?php echo $order_id; ?>">
- <input type="hidden" name="amount" value="<?php echo $total; ?>"> <!-- "<?php echo $total; ?>" -->
+ <input type="hidden" name="amount" value="<?php echo number_format((float)$total, 2, '.', ''); ?>"> <!-- "<?php echo $total; ?>" -->
  <input type="hidden" name="currCode" value="<?php echo $currCode; ?>">
  <input type="hidden" name="lang" value="<?php echo $lang; ?>">
  <input type="hidden" name="cancelUrl" value="<?php echo $cancelUrl; ?>">

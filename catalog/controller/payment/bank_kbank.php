@@ -11,7 +11,9 @@ class ControllerPaymentBankKbank extends Controller {
 
 		$data['bank'] = nl2br($this->config->get('bank_kbank_bank' . $this->config->get('config_language_id')));
 
-		$data['continue'] = $this->url->link('checkout/success');
+		$data['continue'] = $this->url->link('checkout/success'); // for agent
+		//$data['continue'] = $this->url->link('checkout/success','','SSL'); // for ecomm.
+		
 		//koy update 2/12/2015
 		$data['ani'] = $this->session->data['cust_ani'];
 

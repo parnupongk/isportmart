@@ -194,8 +194,8 @@
             		//echo $cheque; 
             		echo $store_owner; 
             	?> 
-            	<br>
-            		<img src="image/isport_sign.png"><br>
+            	<br><br><br><br><br><br>
+            		<!-- img src="image/isport_sign.png"><br -->
             	_________________________________________________<br>
             	<?php echo $text_approve_invoice; ?></td>
            

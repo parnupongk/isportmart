@@ -892,6 +892,7 @@
                     <tr>
                       <td colspan="2"></td>
                       <td class="text-left"><button type="button" onclick="addImage();" data-toggle="tooltip" title="<?php echo $button_image_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                      <button type="button" onclick="addMultiImage();" data-toggle="tooltip" title="<?php echo $button_image_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
                     </tr>
                   </tfoot>
                 </table>
@@ -1425,6 +1426,27 @@ function addSpecial() {
 //--></script> 
   <script type="text/javascript"><!--
 var image_row = <?php echo $image_row; ?>;
+
+function addMultiImage() {
+				$('#modal-image').remove();
+				$.ajax({
+					url: 'index.php?route=common/multifilemanager&token=' + getURLVar('token') + '&image_row=' + image_row,
+					dataType: 'html',
+					beforeSend: function() {
+						$('#button-image i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+						$('#button-image').prop('disabled', true);
+					},
+					complete: function() {
+						$('#button-image i').replaceWith('<i class="fa fa-upload"></i>');
+						$('#button-image').prop('disabled', false);
+					},
+					success: function(html) {
+						$('body').append('<div id="modal-image" class="modal">' + html + '</div>');
+
+						$('#modal-image').modal('show');
+					}
+				});
+			}
 
 function addImage() {
 	html  = '<tr id="image-row' + image_row + '">';

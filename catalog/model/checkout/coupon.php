@@ -2,7 +2,7 @@
 class ModelCheckoutCoupon extends Model {
 	public function getCoupon($code) {
 		$status = true;
-
+		
 		$coupon_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "coupon` WHERE code = '" . $this->db->escape($code) . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
 
 		if ($coupon_query->num_rows) {
@@ -48,17 +48,19 @@ class ModelCheckoutCoupon extends Model {
 
 			$product_data = array();
 
+
 			if ($coupon_product_data || $coupon_category_data) {
-				foreach ($this->cart->getProducts() as $product) {
+				foreach ($this->cart->getProducts() as $product) {				
+					
 					if (in_array($product['product_id'], $coupon_product_data)) {
 						$product_data[] = $product['product_id'];
-
+						
 						continue;
 					}
 
 					foreach ($coupon_category_data as $category_id) {
 						$coupon_category_query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "product_to_category` WHERE `product_id` = '" . (int)$product['product_id'] . "' AND category_id = '" . (int)$category_id . "'");
-
+					
 						if ($coupon_category_query->row['total']) {
 							$product_data[] = $product['product_id'];
 
@@ -71,9 +73,16 @@ class ModelCheckoutCoupon extends Model {
 					$status = false;
 				}
 			}
+			
+			// debug - one add 			
+			//$log = new Log('coupon_debug.log');		
+			//if ( $status ) {  			$log->write( " coupon_product_data || coupon_category_data : status=true" );
+			//} else {			$log->write( " coupon_product_data || coupon_category_data : status-=false" );  		}
+			
 		} else {
 			$status = false;
 		}
+		
 
 		if ($status) {
 			return array(
@@ -94,4 +103,5 @@ class ModelCheckoutCoupon extends Model {
 			);
 		}
 	}
+		
 }

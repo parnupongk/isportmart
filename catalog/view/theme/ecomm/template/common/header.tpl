@@ -27,12 +27,19 @@
 <link href="catalog/view/javascript/ecomm/css/bootstrap.css" rel="stylesheet" media="screen" />
 <script src="catalog/view/javascript/ecomm/js/bootstrap.min.js" type="text/javascript"></script>
 <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Kanit:200,400,600,700&subset=thai" rel="stylesheet">
 <link href="catalog/view/theme/ecomm/stylesheet/stylesheet.css" rel="stylesheet">
+<link href="catalog/view/theme/ecomm/stylesheet/theme-2017.css?v.1.0.2" rel="stylesheet">
 <?php foreach ($styles as $style) { ?>
 <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
 <script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+<!-- Wow Effects --> 
+<link href="catalog/view/stylesheet/animate.css" rel="stylesheet">
+<script src="catalog/view/javascript/wow.min.js" type="text/javascript"></script>
+<script>
+new WOW().init();
+</script>
 <?php foreach ($scripts as $script) { ?>
 <script src="<?php echo $script; ?>" type="text/javascript"></script>
 <?php } ?>
@@ -71,10 +78,10 @@
     </div>
   </div>
 </nav>
-<headerlogo>
-  <div class="container" style="padding-top:20px;">
+<headerlogo id="header">
+  <div class="container">
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <div id="logo">
           <?php if ($logo) { ?>
           <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
@@ -83,10 +90,10 @@
           <?php } ?>
         </div>
       </div>
-      <div class="col-sm-6"><?php echo $search; ?>
+      <div class="col-sm-5"><?php echo $search; ?>
       </div>
       <!-- bom update>
-      <div class="col-sm-2"> 
+      <div class="col-sm-1"> 
         
       <li class="form-control">
         <a href="<?php echo $categories; ?>" title="All Categories" class="dropdown-toggle" data-toggle="dropdown">

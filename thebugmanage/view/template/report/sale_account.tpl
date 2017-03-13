@@ -10,14 +10,20 @@
       </ul>
     </div>
   </div>
+  
   <div class="container-fluid">
-    <!--div class="panel panel-default"-->
-      <!--div class="panel-body"-->
+    <div class="panel panel-default">
+    	<div class="panel-body">
+    		
+ 	  	<a href="http://report.samartbug.com/ishop/isportmart.php" target="_blank">Report : Sale report for Accounting</a>
+ 	  	<br/><br/> 	  	
+	  	<a href="http://report.samartbug.com/ishop/isportmart.php" target="_blank">Report : Product and option in Order </a>  	
+      
         <!--div class="table-responsive"-->
-<iframe width="100%"  height="500" src="http://report.samartbug.com/ishop/isportmart.php"></iframe> 
+		<!--iframe width="100%"  height="500" src="http://report.samartbug.com/ishop/isportmart.php"></iframe--> 
         <!--/div-->
-      <!--/div-->
-    <!--/div-->
+      </div>
+    </div>
   </div>
 </div>  
   

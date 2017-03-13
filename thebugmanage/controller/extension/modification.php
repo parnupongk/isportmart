@@ -165,8 +165,8 @@ class ControllerExtensionModification extends Controller {
 							$path = DIR_CATALOG . str_replace('../', '', substr($file, 8));
 						}
 
-						if (substr($file, 0, 5) == 'thebugmanage') {
-							$path = DIR_APPLICATION . str_replace('../', '', substr($file, 6));
+						if (substr($file, 0, 12) == 'thebugmanage') {
+							$path = DIR_APPLICATION . str_replace('../', '', substr($file, 13));
 						}
 
 						if (substr($file, 0, 6) == 'system') {

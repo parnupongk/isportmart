@@ -910,7 +910,7 @@
                       <button type="button" id="button-payment-method" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary">ยืนยันก่อนบันทึก</button>
 					  <!--<?php echo $button_apply; ?>-->
                       </span></div>
-					  <br><font color=blue>ในกรณีแก้ไข วิธีการชำระเงิน เป็น </font><font color=red>"เก็บเงินปลายทาง" </font> <font color=blue>ให้ทำการแจ้ง Technical ด้วยค่ะ</font> 
+					  <br><font color=blue>ไม่ควร แก้ไข จาก </font><font color=red>"เก็บเงินปลายทาง" เป็น "โอนผ่านธนาคาร"</font> <font color=blue>* ต้อง แจ้ง Admin เพื่อประสาน Partner ก่อน</font> 
                   </div>                 
                 </div>
                 
@@ -918,17 +918,17 @@
               <input type="hidden" name="voucher" id="input-voucher" value="" />
               <input type="hidden" name="reward" id="input-reward" value="" />
 
-                <!--div class="form-group">
+                <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-coupon"><?php echo $entry_coupon; ?></label>
                   <div class="col-sm-10">
                     <div class="input-group">
                       <input type="text" name="coupon" value="<?php echo $coupon; ?>" id="input-coupon" class="form-control" />
                       <span class="input-group-btn">
-                      <button type="button" id="button-coupon" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary"><?php echo $button_apply; ?></button>
+                      <button type="button" id="button-coupon" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary">ยืนยันก่อนบันทึก</button>
                       </span></div>
                   </div>
                 </div>
-                <div class="form-group">
+                <!--div class="form-group">
                   <label class="col-sm-2 control-label" for="input-voucher"><?php echo $entry_voucher; ?></label>
                   <div class="col-sm-10">
                     <div class="input-group">

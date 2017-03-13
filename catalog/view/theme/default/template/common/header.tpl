@@ -77,7 +77,6 @@
           <ul class="dropdown-menu dropdown-menu-right">
             <li><a href="<?php echo $policy; ?>"><?php echo $text_policy; ?></a></li>
             <li><a href="<?php echo $delivery; ?>"><?php echo $text_delivery; ?></a></li>
-           <!-- <li><a href="<?php echo condition; ?>"><?php echo text_condition; ?></a></li> -->   
             <li><a href="<?php echo $payment; ?>"><?php echo $text_payment; ?></a></li>
 			<li><a href="<?php echo $return; ?>"><?php echo $text_returnprd; ?></a></li>
           </ul>

@@ -970,6 +970,24 @@ public function invoice(){
 
 			foreach ($products as $product) {
 				$option_data = array();
+			
+				// bom 20172002 add get barcode
+				//print_r( $product['product_id']);
+				$barcode = "";
+				$product_value_barcode = array();
+			foreach ($this->model_catalog_product->getProductOptions($product['product_id']) as $option) {
+							
+
+							foreach ($option['product_option_value'] as $option_value) {
+								
+								$product_value_barcode[] = array(
+									'product_option_value_id'    => $option_value['product_option_value_id'],
+									'barcode'            => $option_value['barcode'],
+									);
+							}
+
+				}
+				// end bom
 
 				$options = $this->model_account_order->getOrderOptions($this->request->get['order_id'], $product['order_product_id']);
 
@@ -985,10 +1003,17 @@ public function invoice(){
 							$value = '';
 						}
 					}
-
+					foreach( $product_value_barcode as $barcodes )
+					{
+						if( $option['product_option_value_id'] == $barcodes['product_option_value_id'] )
+						{
+							$barcode = $barcodes['barcode'];
+						}
+					}
+					//print_r($option['product_option_value_id']);
 					$option_data[] = array(
-						'name'  => $option['name'],
-						'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
+						'name'  => $option['name'] ,
+						'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value) . ' ' . $barcode
 					);
 				}
 

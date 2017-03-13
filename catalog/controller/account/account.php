@@ -46,7 +46,7 @@ class ControllerAccountAccount extends Controller {
 		//nid add 24/03/2016 11:44
 		$data['text_history'] = $this->language->get('text_history');
 		//nid add 24/03/2016 11:44
-		$data['text_password'] = $this->language->get('text_password');
+			$data['text_password'] = $this->language->get('text_password');
 		$data['text_address'] = $this->language->get('text_address');
 		$data['text_wishlist'] = $this->language->get('text_wishlist');
 		$data['text_order'] = $this->language->get('text_order');
@@ -65,7 +65,8 @@ class ControllerAccountAccount extends Controller {
 		$data['address'] = $this->url->link('account/address', '', 'SSL');
 		$data['wishlist'] = $this->url->link('account/wishlist');
 		$data['order'] = $this->url->link('account/order', '', 'SSL');
-		/*$data['download'] = $this->url->link('account/download', '', 'SSL');
+		// begin - remark out 13/07/2016
+		$data['download'] = $this->url->link('account/download', '', 'SSL');
 		$data['return'] = $this->url->link('account/return', '', 'SSL');
 		$data['transaction'] = $this->url->link('account/transaction', '', 'SSL');
 		$data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');
@@ -75,7 +76,8 @@ class ControllerAccountAccount extends Controller {
 			$data['reward'] = $this->url->link('account/reward', '', 'SSL');
 		} else {
 			$data['reward'] = '';
-		}*/
+		}
+		// end - remark out 13/07/2016
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
@@ -159,10 +161,6 @@ class ControllerAccountAccount extends Controller {
 		unset($this->session->data['agent_id']);
 		unset($this->session->data['cust_step']);
 		unset($this->session->data['dnis']);
-		
-
-
-		
 		
 		$user_id = $this->model_account_customer->getUserid( $agent_id );
 		//koy add 11/4/2016 - user agent login success

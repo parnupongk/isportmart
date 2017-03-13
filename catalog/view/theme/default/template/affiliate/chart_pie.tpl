@@ -91,8 +91,8 @@
       	});   
 $('#range .active a').trigger('click');
 		</script>
-		<script src="http://code.highcharts.com/highcharts.js"></script>
-        <script src="http://code.highcharts.com/modules/exporting.js"></script>
+		<script src="highchart/highcharts.js"></script>
+        <script src="highchart/exporting.js"></script>
 </div><!-- add content -->
     <?php echo $column_right; ?></div>
 </div>

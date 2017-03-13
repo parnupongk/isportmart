@@ -1,20 +1,18 @@
 body {
-	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 	color: #666;
-	font-size: 12px;
+	font-size: 14px;
 	line-height: 20px;
-	width: 100%;
 }
 h1, h2, h3, h4, h5, h6 {
 	color: #444;
 }
 /* default font size */
-.fa {
+/*.fa {
 	font-size: 14px;
-}
+}*/
 /* Override the bootstrap defaults */
-h1 {
+/*h1 {
 	font-size: 33px;
 }
 h2 {
@@ -34,7 +32,7 @@ h6 {
 }
 a {
 	color: #23a1d1;
-}
+}*/
 a:hover {
 	text-decoration: none;
 }
@@ -79,14 +77,13 @@ div.required .control-label:before {
 }
 /* top */
 #top {
-	background-color: #EEEEEE;
-	border-bottom: 1px solid #e2e2e2;
+	background-color: #333333;
 	padding: 4px 0px 3px 0;
-	margin: 0 0 20px 0;
 	min-height: 40px;
 }
 #top .container {
 	padding: 0 20px;
+	color: #000000;
 }
 #top #currency .currency-select {
 	text-align: left;
@@ -99,12 +96,11 @@ div.required .control-label:before {
 	background-repeat: repeat-x;
 }
 #top .btn-link, #top-links li, #top-links a {
-	color: #888;
-	text-shadow: 0 1px 0 #FFF;
+	color: white;
 	text-decoration: none;
 }
 #top .btn-link:hover, #top-links a:hover {
-	color: #444;
+	color: red;
 }
 #top-links .dropdown-menu a {
 	text-shadow: none;
@@ -190,10 +186,10 @@ div.required .control-label:before {
 }
 /* menu */
 #menu {
-	background-color: #229ac8;
-	background-image: linear-gradient(to bottom, #23a1d1, #1f90bb);
+	background-color: black;
+	background-image: linear-gradient(to bottom, black, black);
 	background-repeat: repeat-x;
-	border-color: #1f90bb #1f90bb #145e7a;
+	border-color: black black black;
 	min-height: 40px;
 }
 #menu .nav > li > a {
@@ -221,7 +217,7 @@ div.required .control-label:before {
 	padding: 3px 20px;
 	clear: both;
 	line-height: 20px;
-	color: #333333;
+	color: #ffffff;
 	font-size: 12px;
 }
 #menu .dropdown-inner li a:hover {
@@ -484,8 +480,8 @@ footer h5 {
 .btn-inverse {
 	color: #ffffff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background-color: #363636;
-	background-image: linear-gradient(to bottom, #444444, #222222);
+	background-color: red;
+	/*background-image: linear-gradient(to bottom, #444444, #222222);*/
 	background-repeat: repeat-x;
 	border-color: #222222 #222222 #000000;
 }

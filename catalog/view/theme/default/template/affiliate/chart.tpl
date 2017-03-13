@@ -39,7 +39,7 @@
 	  </div>	 
 	  
 	</div>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="highchart/jquery.min.js"></script>
 <script type="text/javascript">
 	$('#range a').on('click', function(e) {
 	e.preventDefault();	
@@ -91,6 +91,7 @@
 	                borderWidth: 0
 	            },
 	            series: []
+	          //   series: [{name:"Cancel", data:[0, 2, 1, 1, 0, 2, 0, 2, 3, 0, 0]}, {name:"During Delivery", data:[0, 2, 1, 3, 5, 6, 0, 31, 32, 5, 3]}, {name:"Deliver to Customer", data:[2, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0]}, {name:"Deliver cancel", data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {name:"Claim Refund", data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}, {name:"Completed ", data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}]
 	        }
 	        $.getJSON('data_columnchart.php?range='+$(this).attr('href')+'&affiliate_id='+$('input[name=\'affiliate_id\']').val(), function(json) {
 				//options.series[0].data = json;
@@ -104,7 +105,7 @@
 	        	options.series[5] = json[6];
 	        	options.series[6] = json[7];
 	        	options.series[7] = json[8];
-	        	//alert(options.series[0].data);
+	        	//alert( json.toSource());
 		        chart = new Highcharts.Chart(options);
 	        });
 	        
@@ -113,8 +114,8 @@
       	});   
 $('#range .active a').trigger('click');
 		</script>
-		<script src="http://code.highcharts.com/highcharts.js"></script>
-        <script src="http://code.highcharts.com/modules/exporting.js"></script>
+		<script src="highchart/highcharts.js"></script>
+        <script src="highchart/exporting.js"></script>
 </div><!-- add content -->
     <?php echo $column_right; ?></div>
 </div>

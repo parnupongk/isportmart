@@ -42,8 +42,8 @@ class ControllerAffiliateChart extends Controller {
 		$data['header'] = $this->load->controller('common/headeraff');
 		
 		//koy fix template to default only! 26/5/2016
-		//$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/affiliate/chart.tpl', $data));
-		
+		//$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/affiliate/chart.tpl', $data));		
+		//$this->response->setOutput($this->load->view('default/template/affiliate/chart.tpl', $data));
 		$this->response->setOutput($this->load->view('default/template/affiliate/chart.tpl', $data));
 }	
 public function chart() {

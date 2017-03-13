@@ -8,11 +8,11 @@ $_['text_list']              = 'Attribute List';
 $_['text_add']               = 'Add Attribute';
 $_['text_edit']              = 'Edit Attribute';
 
-// Column 
+// Column
 $_['column_name']            = 'Attribute Name';
-$_['column_attribute_group'] = 'Attribute Group'; 
+$_['column_attribute_group'] = 'Attribute Group';
 $_['column_sort_order']      = 'Sort Order';
-$_['column_action']          = 'Action'; 
+$_['column_action']          = 'Action';
 
 // Entry
 $_['entry_name']            = 'Attribute Name';

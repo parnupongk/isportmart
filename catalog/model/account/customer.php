@@ -365,15 +365,21 @@ class ModelAccountCustomer extends Model {
 		}		
 		
 		// one add - for Allow specific IP - begin @ 3/6/2016 
-		if ( (strpos( $ipAddress, '203.149.37.') !== false) ||  		// 203.149.37.146 // proxy fl.24
-			(strpos( $ipAddress, '210.246.156.') !== false) ||  	//	210.246.156.80,  210.246.156.91  // proxy IT 
-			(strpos( $ipAddress, '210.246.157.') !== false) || 	//	210.246.157.22	// proxy IT 
-			(strpos( $ipAddress, '172.21.8.1') !== false) || 		// x forward IP
-			(strpos( $ipAddress, '192.168.64.') !== false ) ) { 
+//		if ( (strpos( $ipAddress, '203.149.37.') !== false) ||  		// 203.149.37.146 // proxy fl.24
+//			(strpos( $ipAddress, '210.246.156.') !== false) ||  	//	210.246.156.80,  210.246.156.91  // proxy IT 
+//			(strpos( $ipAddress, '210.246.157.') !== false) || 	//	210.246.157.22	// proxy IT 
+//			(strpos( $ipAddress, '172.21.8.1') !== false) || 		// x forward IP
+//			(strpos( $ipAddress, '192.168.64.') !== false ) ) { 
 			//$vblock = false;
+			
+		// one change if fixed ip to query from DB @ 6/7/2016 -- begin
+		$query = $this->db->query("SELECT count(*) allow FROM `oc_agent_ipallow`where instr( '" . $ipAddress. "' , ipaddr) =1");
+		if ($query->row['allow'] == 1) {
+			//$vblock = false;
+		// one change if fixed ip to query from DB @ 6/7/2016 -- end
 		} else {
 			//$vblock = true;
-			$this->db->query("INSERT INTO oc_agent_block SET agentid ='" . $agent_id ."',  remoteip = '". $ipAddress ."' ");
+			$this->db->query("INSERT INTO oc_agent_block SET agentid ='" . $agent_id ."',  remoteip = '". $ipAddress ."', access='front:signbyagent|getUserid' ");
 			return 0;  // block 
 		}
 		// one add - for Allow specific IP - end  @ 3/6/2016 

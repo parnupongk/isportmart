@@ -349,7 +349,8 @@ class ModelCatalogProduct extends Model {
 					'price'                   => $product_option_value['price'],
 					'price_prefix'            => $product_option_value['price_prefix'],
 					'weight'                  => $product_option_value['weight'],
-					'weight_prefix'           => $product_option_value['weight_prefix']
+					'weight_prefix'           => $product_option_value['weight_prefix'],
+					'barcode'				  => $product_option_value['barcode']
 				);
 			}
 
@@ -396,6 +397,16 @@ class ModelCatalogProduct extends Model {
 
 		if ($query->num_rows) {
 			return $query->row['layout_id'];
+		} else {
+			return 0;
+		}
+	}
+		// bom update 2016/12/28
+	public function getProductPriceBids($product_id) {
+		$query = $this->db->query("SELECT max(user_bid) user_bid FROM " . DB_PREFIX . "wkauctionbids WHERE product_id = '" . (int)$product_id . "' ");
+
+		if ($query->num_rows) {
+			return $query->row['user_bid'];
 		} else {
 			return 0;
 		}
