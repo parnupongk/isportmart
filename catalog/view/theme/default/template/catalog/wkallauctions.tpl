@@ -138,7 +138,7 @@
 				});
 				};
 			</script>
-						<i class="glyphicon glyphicon-time" style="font-size:21px;left:10px;top:9px;"></i>
+						<i class="fa fa-clock-o" style="font-size:21px;left:10px;top:9px;"></i>
 			        </div><!--button-group-->  
 			    </div><!--div-->  
 			</div><!--product-thumb-->

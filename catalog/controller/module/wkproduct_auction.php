@@ -13,9 +13,14 @@ class ControllerModuleWkproductauction extends Controller {
 		}
 		//LOAD LANGUAGE
 		$this->language->load('module/wkproduct_auction');
+		$this->load->language('product/product');
+
+		//Set Product text
+		$this->data['text_model'] = $this->language->get('text_model');
 
 		//SET TITLE
   		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['product_title'] = $this->language->get('product_title');
   		$this->data['text_biddetails'] = $this->language->get('text_biddetails');
   		$this->data['text_bidlist'] = $this->language->get('text_bidlist');
   		$this->data['text_bidnow'] = $this->language->get('text_bidnow');
@@ -40,8 +45,8 @@ class ControllerModuleWkproductauction extends Controller {
   		$this->data['entry_login_error'] = $this->language->get('entry_login_error');
   		$this->data['entry_ammount_less_error'] = $this->language->get('entry_ammount_less_error');
   		$this->data['entry_ammount_range_error'] = $this->language->get('entry_ammount_range_error');
-
-  		//Automatic bidding
+  		
+		  //Automatic bidding
   
   		$this->data['automatic_bid']=$this->language->get('automatic_bid');
   		$this->data['text_auto_bidlist']=$this->language->get('text_auto_bidlist');
@@ -106,6 +111,19 @@ class ControllerModuleWkproductauction extends Controller {
 					'bid' => $this->currency->format($detail['user_bid']),
 				    'name' => $detail['firstname']." ".$detail['lastname'],
 			    );
+			}
+
+			// bom update 20170313 add product info 
+			$product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
+			
+			if($product_info)
+			{
+				//$pricebid = $this->model_catalog_product->getProductPriceBids($this->request->get['product_id']);
+				$this->data['product_title'] = $product_info['name'];
+				$this->data['model'] = $product_info['model'];
+				//$pricebid = $this->model_module_wkproduct_auction->getAuction($this->request->get['product_id']);
+				//$this->data['pricebid'] =  $pricebid;
+				//$this->data['pricebidtxt'] = $this->currency->format($this->tax->calculate($this->model_catalog_product->getProductPriceBids($this->request->get['product_id']), $product_info['tax_class_id'], $this->config->get('config_tax')));
 			}
         }
 

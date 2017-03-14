@@ -308,10 +308,20 @@ class ControllerProductProduct extends Controller {
 
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				$data['price'] = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
-				// bom update 2016/12/28
-				$pricebid = $this->model_catalog_product->getProductPriceBids($this->request->get['product_id']);
-				$data['pricebid'] =  $pricebid;
-				$data['pricebidtxt'] = $this->currency->format($this->tax->calculate($this->model_catalog_product->getProductPriceBids($this->request->get['product_id']), $product_info['tax_class_id'], $this->config->get('config_tax')));
+				// bom update 2016/12/28 check this product is auction
+				$this->load->model('module/wkproduct_auction');
+				$auction_info = array();
+				$auction_info = $this->model_module_wkproduct_auction->getAuction($this->request->get['product_id']);
+				if(is_null($auction_info[0]['product_id']) )
+				{
+					$data['isauction'] = 'false';
+				}else{
+					$data['isauction'] = 'true';
+				}
+				//print_r($data['isauction']);
+				//$pricebid = $this->model_catalog_product->getProductPriceBids($this->request->get['product_id']);
+				//$data['pricebid'] =  $pricebid;
+				//$data['pricebidtxt'] = $this->currency->format($this->tax->calculate($this->model_catalog_product->getProductPriceBids($this->request->get['product_id']), $product_info['tax_class_id'], $this->config->get('config_tax')));
 			} else {
 				$data['price'] = false;
 			}
@@ -461,8 +471,8 @@ class ControllerProductProduct extends Controller {
 					'tax'         => $tax,
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $rating,
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
-					'pricebid'	  => $pricebid
+					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					//'pricebid'	  => $pricebid
 				);
 			}
 

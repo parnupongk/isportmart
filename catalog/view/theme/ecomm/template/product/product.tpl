@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+
 <div class="container">
   <ul class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -128,7 +129,8 @@
         <?php } else { ?>
         <?php $class = 'col-sm-4'; ?>
         <?php } ?>
-        <div class="<?php echo $class; ?>">
+        
+        <div class="<?php echo $class; ?>" <?php if($isauction == 'true'){ echo 'style=display:none;'; } ?> >
           <div class="btn-group">
             <button type="button" data-toggle="tooltip" class="btn btn-default" title="<?php echo $button_wishlist; ?>" onclick="wishlist.add('<?php echo $product_id; ?>');"><i class="fa fa-heart"></i></button>
             <button type="button" data-toggle="tooltip" class="btn btn-default" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product_id; ?>');"><i class="fa fa-exchange"></i></button>
@@ -148,11 +150,7 @@
           <ul class="list-unstyled">
             <?php if (!$special) { ?>
             <li>
-              <?php if($pricebid > 0) {?>
-                <h2><?php echo $pricebidtxt; ?></h2>
-              <?php } else { ?>
                 <h2><?php echo $price; ?></h2>
-              <?php } ?>
             </li>
             <?php } else { ?>
             <li><span style="text-decoration: line-through;"><?php echo $price; ?></span></li>
@@ -160,7 +158,7 @@
               <h2><?php echo $special; ?></h2>
             </li>
             <?php } ?>
-            <?php if ($tax && $pricebid == 0) { ?>
+            <?php if ($tax) { ?>
             <li><?php echo $text_tax; ?> <?php echo $tax; ?></li>
             <?php } ?>
             <?php if ($points) { ?>
@@ -315,7 +313,7 @@
             </div>
             <?php } ?>
             <div class="form-group">
-              <?php if(!$pricebid > 0) {?>
+
                   <div class="form-group">
                     <label class="control-label" for="input-quantity"><?php echo $entry_qty; ?></label>
                     <input type="text" name="quantity" value="<?php echo $minimum; ?>" size="2" id="input-quantity" class="form-control" />
@@ -324,7 +322,7 @@
               
                     <button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>
                   </div>
-              <?php } ?>
+
             </div>
             <?php if ($minimum > 1) { ?>
             <div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $text_minimum; ?></div>
@@ -381,7 +379,7 @@
               <?php } ?>
               <?php if ($product['price']) { ?>
               <p class="price">
-                <?php echo $product['pricebid']; ?>
+
                 <?php if (!$product['special']) { ?>
                    <?php echo $product['price']; ?>
                 <?php } else { ?>

@@ -115,36 +115,38 @@
     </div><!-- /.modal -->
 
   <!-- Default panel contents -->
-  <div class="panel-heading text-center"><?php echo $entry_auction; ?></div>
+  <div class="panel-heading text-center"><?php echo $product_title; ?>
+   <li><?php echo $text_model; ?> <?php echo $model; ?></li></div> <!--  echo $entry_auction;  -->
   <div class="panel-body">
     <div class="subheadcont">
   <div id="countdown_dashboard">
       <div class="dash weeks_dash">
-        <div class="digit">0</div><div class="digit">0</div>
+        <div class="digit">0</div><div class="digit">0</div>Week
       </div>
 
       <div class="dash days_dash">
-        <div class="digit">0</div><div class="digit">0</div>
+        <div class="digit">0</div><div class="digit">0</div>DD
       </div>
 
       <div class="dash hours_dash">
-        <div class="digit">0</div><div class="digit">0</div>
+        <div class="digit">0</div><div class="digit">0</div>HH
       </div>
 
       <div class="dash minutes_dash">
-        <div class="digit">0</div><div class="digit">0</div>
+        <div class="digit">0</div><div class="digit">0</div>MM
       </div>
 
       <div class="dash seconds_dash">
-        <div class="digit">0</div><div class="digit">0</div>
+        <div class="digit">0</div><div class="digit">0</div>SS
       </div>
 
     </div>
-    <i class="glyphicon glyphicon-time"></i>
+    <i class="fa fa-clock-o"></i>
         <div class="detailbutton">
           
           <div class="quantity_msg"><?php echo $text_quantity.$quant_limit?></div>
-          <span class="btn btn-primary bid_details"><?php echo $text_biddetails; ?></span>&nbsp;
+          <!-- bom update fix bids detail-->
+          <!-- span class="btn btn-primary bid_details"><?php echo $text_biddetails; ?></span>&nbsp; -->
           <span class="btn btn-primary" data-toggle="modal" data-target="#myModal-seller-mail"><?php echo $text_bidlist; ?></span>
           
           <!-- Automatic auction -->
@@ -152,7 +154,7 @@
             <span class="btn btn-primary" data-toggle="modal" data-target="#myModal-auto-bid"><?php echo $text_auto_bidlist; ?></span>
           <?php } ?>
         </div>
-        <div id="rangearea">   
+        <div id="rangearea_fix">   <!-- bom update _fix -->
           <div class="table-responsive">
               <table class="table">        
                 <tr><td class="table_border"><?php echo $entry_bids; ?></td><td class="table_border"><?php echo $totalBids;?></td></tr>

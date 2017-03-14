@@ -5,7 +5,7 @@
 
 // Heading 
 $_['heading_title']  = 'Product auction';
-
+$_['product_title'] = 'Product auction';
 //Text
 $_['text_biddetails'] = 'Bid Details';
 $_['text_bidlist'] = 'Bid List';
