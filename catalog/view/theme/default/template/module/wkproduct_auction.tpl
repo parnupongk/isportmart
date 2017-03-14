@@ -121,23 +121,23 @@
     <div class="subheadcont">
   <div id="countdown_dashboard">
       <div class="dash weeks_dash">
-        <div class="digit">0</div><div class="digit">0</div>Week
+        <div class="digit">0</div><div class="digit">0</div><span>Week</span>
       </div>
 
       <div class="dash days_dash">
-        <div class="digit">0</div><div class="digit">0</div>DD
+        <div class="digit">0</div><div class="digit">0</div><span>DD</span>
       </div>
 
       <div class="dash hours_dash">
-        <div class="digit">0</div><div class="digit">0</div>HH
+        <div class="digit">0</div><div class="digit">0</div><span>HH</span>
       </div>
 
       <div class="dash minutes_dash">
-        <div class="digit">0</div><div class="digit">0</div>MM
+        <div class="digit">0</div><div class="digit">0</div><span>MM</span>
       </div>
 
       <div class="dash seconds_dash">
-        <div class="digit">0</div><div class="digit">0</div>SS
+        <div class="digit">0</div><div class="digit">0</div><span>SS</span>
       </div>
 
     </div>
