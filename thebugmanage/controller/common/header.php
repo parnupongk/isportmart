@@ -181,6 +181,9 @@ if(!empty($this->request->get['order_id'])){
 		}else if (!empty($this->session->data['user_group'])&& $this->session->data['user_group'] =='DNA') {
 			// bom update 2016/11/29
 			return $this->load->view('common/headercs_bell.tpl', $data);
+		}else if (!empty($this->session->data['user_group'])&& $this->session->data['user_group'] =='SKINREPCIPE') {
+			// bom update 20170522 fix vender SKINREPCIPE
+			return $this->load->view('common/headercs_bell.tpl', $data);
 		}else {
 			return $this->load->view('common/header.tpl', $data);
 		}

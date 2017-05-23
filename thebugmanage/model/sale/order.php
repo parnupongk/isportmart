@@ -268,8 +268,10 @@ class ModelSaleOrder extends Model {
 		if($data['filter_user_group'] == 'NarLabs' ){   
 		$sql .= " and o.affiliate_id=13 ";
 		}
-		if($data['filter_user_group'] == 'DNA' ){ 
+		else if($data['filter_user_group'] == 'DNA' ){ 
 		$sql .= " and o.affiliate_id=14 ";
+		}else if($data['filter_user_group'] == 'SKINREPCIPE' ){ 
+		$sql .= " and o.affiliate_id=16 ";
 		}
 
 		if (!empty($data['filter_customer'])) {

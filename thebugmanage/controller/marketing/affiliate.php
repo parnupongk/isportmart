@@ -1270,7 +1270,7 @@ class ControllerMarketingAffiliate extends Controller {
 				'filter_name'  => $filter_name,
 				'filter_email' => $filter_email,
 				'start'        => 0,
-				'limit'        => 5
+				'limit'        => 10
 			);
 
 			$results = $this->model_marketing_affiliate->getAffiliates($filter_data);

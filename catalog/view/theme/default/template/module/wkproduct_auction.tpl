@@ -115,8 +115,7 @@
     </div><!-- /.modal -->
 
   <!-- Default panel contents -->
-  <div class="panel-heading text-center"><?php echo $product_title; ?>
-   <li><?php echo $text_model; ?> <?php echo $model; ?></li></div> <!--  echo $entry_auction;  -->
+  <div class="panel-heading text-center"><?php echo $product_title; ?></div> <!--  echo $entry_auction;  -->
   <div class="panel-body">
     <div class="subheadcont">
   <div id="countdown_dashboard">
@@ -155,14 +154,17 @@
           <?php } ?>
         </div>
         <div id="rangearea_fix">   <!-- bom update _fix -->
+        
           <div class="table-responsive">
-              <table class="table">        
+              <table class="table">    
+              <tr><td class="table_border"><?php echo $product_title; ?></td><td class="table_border"></td></tr>
+              <tr><td class="table_border"><?php echo $text_model; ?> <?php echo $model; ?>   </td><td class="table_border"></td></tr>
                 <tr><td class="table_border"><?php echo $entry_bids; ?></td><td class="table_border"><?php echo $totalBids;?></td></tr>
                 <?php if ($wkproduct_auction_automatic_auction_status) {?>
                 <tr><td class="table_border"><?php echo $entry_total_bids; ?></td><td class="table_border"><?php echo $totalautoBids;?></td></tr>
                 <?php } ?>
                 <tr><td class="table_border"><?php echo $entry_min_price; ?></td><td class="table_border"><?php echo $min;?> </td></tr>
-                <!--tr><td class="table_border"><?php echo $entry_max_price; ?></td><td class="table_border"><?php echo $max;?> </td></tr -->
+                <tr><td class="table_border">Current price</td><td class="table_border"><?php echo $atleast;?> </td></tr>
                 <tr><td class="table_border"><?php echo $entry_start_time; ?></td><td class="table_border"><?php echo substr($start,11,19);?> </td></tr>
                 <tr><td class="table_border"><?php echo $entry_close_time; ?></td><td class="table_border"><?php echo substr($end,11,19);?></td></tr>
             </table>

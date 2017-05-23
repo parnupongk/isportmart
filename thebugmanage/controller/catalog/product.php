@@ -386,6 +386,13 @@ class ControllerCatalogProduct extends Controller {
 			//echo $this->user->getId();
 			$filter_affiliate_id = '14';
 		}
+		else if($this->user->getId() == '89')
+		{
+			// bom update 20170522
+			// fix if vender cherycher login with see only cherycher product 
+			//echo $this->user->getId();
+			$filter_affiliate_id = '16';
+		}
 
 		$filter_data = array(
 			'filter_name'	  => $filter_name,
